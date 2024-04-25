@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Index page</title>
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css"/>
+    <script src="webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        /* CSS pour changer la couleur du design */
+        body {
+            background-color: #090909; /* Couleur de fond jaune */
+            color: #ff007f; /* Couleur du texte rose */
+        }
+
+        .btn-primary {
+            background-color: #ff007f; /* Couleur du bouton principal rose */
+            border-color: #ff007f; /* Couleur de la bordure du bouton principal rose */
+        }
+
+        .btn-primary:hover {
+            background-color: #ff66b2; /* Couleur du bouton principal au survol rose clair */
+            border-color: #ff66b2; /* Couleur de la bordure du bouton principal au survol rose clair */
+        }
+
+        .btn-outline-primary {
+            color: #ff007f; /* Couleur du texte du bouton secondaire rose */
+            border-color: #ff007f; /* Couleur de la bordure du bouton secondaire rose */
+        }
+
+        .btn-outline-primary:hover {
+            color: #ff66b2; /* Couleur du texte du bouton secondaire au survol rose clair */
+            border-color: #ff66b2; /* Couleur de la bordure du bouton secondaire au survol rose clair */
+        }
+    </style>
+
+
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container" align="center">
+        <form action="/ajouterOnce" method="post">
+            <div class="mb-3">
+                <label for="nom" class="form-label">nom</label>
+                <input type="text" class="form-control w-50" id="nom" name="nom">
+                <span class="text-danger"  th:errors="${Product.nom}"></span>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Designation</label>
+                <textarea class="form-control w-50" id="description" name="description" maxlength="100"></textarea>
+                <span class="text-danger"  th:errors="${Product.description}"></span>
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input type="text" class="form-control w-50" id="price" name="price">
+                <span class="text-danger" th:errors="${Product.price}"></span>
+            </div>
+            <button type="submit" class="btn btn-primary form-control w-50" value="Ajouter">Ajouter</button>
+        </form>
+    </div>
+    </div>
+
+</body>
+</html>

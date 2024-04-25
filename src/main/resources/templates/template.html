@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion des Produits</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/webjars/bootstrap/5.3.3/js/bootstrap.bundle.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<!-- Header -->
+<header class="bg-light p-3">
+    <div class="container d-flex justify-content-between align-items-center">
+        <!-- Logo -->
+        <a href="#" class="navbar-brand">
+            <img src="https://cdn-icons-png.freepik.com/256/2632/2632833.png?semt=ais_hybrid" alt="DUDU stock" height="40">
+        </a>
+        <!-- Log in Button -->
+        <button type="button" class="btn btn-dark">Log in</button>
+    </div>
+</header>
+
+<div class="p-3 m-2">
+    <div class="card">
+        <div class="card-header">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <ul class="navbar nav">
+                    <li><a class="btn-dark" th:href="@{indexpage}">List produit</a> | </li>
+                    <li><a class="btn-dark" th:href="@{listfour}">List Fournisseur</a> | </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                           data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Manage
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" th:href="@{ajouterproduit}">Add Product</a></li>
+                            <li><a class="dropdown-item" th:href="@{ajouterfournisseur}">Add fournisseur</a></li>
+
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+        <div class="card-body">
+            <section layout:fragment="content"></section>
+        </div>
+        <div class="card-footer" align="center">&copy; copyright: DUDU 2024<br/> casa-maroc<br/>
+            Dohaezzegrani@gmail.com
+        </div>
+    </div>
+</div>
+</body>
+</html>

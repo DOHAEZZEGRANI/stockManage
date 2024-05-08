@@ -4,9 +4,9 @@
       layout:decorate="template" lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>Index page</title>
-    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css"/>
-    <script src="webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+    <title>Update Produit</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css"/>
+
     <style>
         /* CSS pour changer la couleur du design */
         body {
@@ -35,29 +35,28 @@
         }
     </style>
 
-
 </head>
 <body>
 <div layout:fragment="content">
-    <div class="container" align="center">
-        <form action="/ajouterOOnce" method="post">
-            <div class="mb-3">
-                <label for="nom" class="form-label">nom</label>
-                <input type="text" class="form-control w-50" id="nom" name="nom">
-                <span class="text-danger"  th:errors="${Fournisseur.nom}"></span>
+    <div class="p-3 m-2">
+        <div class="card">
+            <div class="card-header">Modifier stock</div>
+            <div class="card-body">
+
+                <div class="form-group">
+                    <form class="form-inline" action="/add" method="post">
+                        <input type="hidden" name="id" th:value="${stockToBeUpdated.getId()}">
+
+                        Designation: <input class="form-control" name="description" type="text"
+                                            th:value="${stockToBeUpdated.getDescription()}">
+                        Total: <input class="form-control" name="total" type="text"
+                                      th:value="${stockToBeUpdated.getTotal()}">
+                        <br>
+                        <input class="btn btn-primary form-control" type="submit" value="Modifier">
+                    </form>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="description" class="form-label">Designation</label>
-                <textarea class="form-control w-50" id="description" name="description" maxlength="100"></textarea>
-                <span class="text-danger"  th:errors="${Fournisseur.description}"></span>
-            </div>
-            <div class="mb-3">
-                <label for="tel" class="form-label">Price</label>
-                <input type="text" class="form-control w-50" id="tel" name="tel">
-                <span class="text-danger" th:errors="${Fournisseur.tel}"></span>
-            </div>
-            <button type="submit" class="btn btn-primary form-control w-50" value="Ajouter">Ajouter</button>
-        </form>
+        </div>
     </div>
 </div>
 

@@ -21,6 +21,7 @@ public class Admin {
     private String tel;
     private String email;
     private String description;
+    private String password;
     @OneToMany(mappedBy = "admin")
     private List<Customer> clients = new ArrayList<>();
 }

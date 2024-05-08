@@ -5,8 +5,10 @@ import ma.xproce.stockmanag.dao.entities.Customer;
 import java.util.List;
 
 public interface CustomerService {
-    Customer creerCustomer(Customer customer);
-    Customer obtenirCustomerParId(Integer id);
-    List<Customer> obtenirTousLesCustomers();
-    void supprimerCustomer(Integer id);
+    boolean registerUser(Customer customer);
+    Customer loginUser(String username, String password);
+    Customer findByEmail(String email);
+    Customer findById(Integer id);
+    void updateCustomer(Customer customer);
+    void deleteCustomer(Integer id);
 }

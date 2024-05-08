@@ -21,6 +21,9 @@ public class Customer {
     private String tel;
     private String email;
     private String description;
+    private String password;
+    private String username;
+    private String confirmPassword;
     @ManyToMany
     @JoinTable(
             name = "achat",

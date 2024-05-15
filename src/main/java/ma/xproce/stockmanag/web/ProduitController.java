@@ -39,7 +39,11 @@ public class ProduitController {
 
     @GetMapping("")
     public String accu() {
-        return "redirect:/indexpage";
+        return "home";
+    }
+    @GetMapping("about")
+    public String accccu() {
+        return "about";
     }
 
 
@@ -133,6 +137,10 @@ public class ProduitController {
         } else {
             return "error";
         }
+    }
+    @GetMapping("/login")
+    public String login() {
+        return "login"; // Votre page de connexion
     }
 }
 

@@ -1,53 +1,69 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.com"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html xmlns:th="http://www.thymeleaf.com" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="template" lang="en">
+
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <title>Index page</title>
-    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css" />
     <script src="webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
     <style>
-        /* CSS pour changer la couleur du design */
+        /* CSS to change the design colors */
         body {
-            background-color: #090909; /* Couleur de fond jaune */
-            color: #ff007f; /* Couleur du texte rose */
+
+            background-image: url('https://static.vecteezy.com/system/resources/previews/002/534/933/non_2x/light-blue-gradient-blur-backdrop-vector.jpg');
+            color: #ffffff; /* Text color - dark gray */
         }
 
         .btn-primary {
-            background-color: #ff007f; /* Couleur du bouton principal rose */
-            border-color: #ff007f; /* Couleur de la bordure du bouton principal rose */
+            background-color: #f52222; /* Primary button background color - blue */
+            border-color: #f52222; /* Primary button border color - blue */
         }
 
         .btn-primary:hover {
-            background-color: #ff66b2; /* Couleur du bouton principal au survol rose clair */
-            border-color: #ff66b2; /* Couleur de la bordure du bouton principal au survol rose clair */
+            background-color: #0056b3; /* Primary button background color on hover - darker blue */
+            border-color: #0056b3; /* Primary button border color on hover - darker blue */
         }
 
         .btn-outline-primary {
-            color: #ff007f; /* Couleur du texte du bouton secondaire rose */
-            border-color: #ff007f; /* Couleur de la bordure du bouton secondaire rose */
+            color: #007bff; /* Secondary button text color - blue */
+            border-color: #007bff; /* Secondary button border color - blue */
         }
 
         .btn-outline-primary:hover {
-            color: #ff66b2; /* Couleur du texte du bouton secondaire au survol rose clair */
-            border-color: #ff66b2; /* Couleur de la bordure du bouton secondaire au survol rose clair */
+            color: #0056b3; /* Secondary button text color on hover - darker blue */
+            border-color: #0056b3; /* Secondary button border color on hover - darker blue */
+        }
+
+        /* Input color change */
+        input[type="text"] {
+            color: #808080; /* Gray color for input text */
+        }
+
+        /* Styled label */
+        .styled-label {
+            display: inline-block;
+            background-color: #ffffff; /* Light gray background */
+            color: #333333; /* Dark gray text color */
+            border: 1px solid #d0d0d0; /* Light gray border */
+            border-radius: 5px; /* Rounded corners */
+            padding: 8px 12px; /* Padding for text */
+            margin-bottom: 10px; /* Bottom margin for spacing */
         }
     </style>
-
-
 </head>
+
 <body>
 <div layout:fragment="content">
     <div class="d-flex justify-content-center">
         <form method="get" th:action="@{indexpage}">
-            <label>
-                <input type="text" name="search" th:value="${keyword}"/>
+            <label class="styled-label">
+                <input type="text" name="search" th:value="${keyword}" />
             </label>
             <button class="btn btn-primary" type="submit">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi bi-search" viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                 </svg>
             </button>
         </form>
@@ -70,7 +86,6 @@
                 <td th:text="${p.getDescription()}"></td>
                 <td th:text="${p.getPrice()}"></td>
                 <!-- Add other table cells for video details -->
-
             </tr>
             </tbody>
         </table>
@@ -85,8 +100,5 @@
     </div>
 </div>
 </body>
+
 </html>
-
-
-
-

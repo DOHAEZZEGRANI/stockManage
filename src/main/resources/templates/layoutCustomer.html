@@ -1,23 +1,22 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.com"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html xmlns:th="http://www.thymeleaf.com" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="template" lang="en">
+
 <head>
-    <meta charset="utf-8"/>
-    <title>Stock List</title>
-    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css"/>
+    <meta charset="utf-8" />
+    <title>user page</title>
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css" />
     <script src="webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
     <style>
         /* CSS to change the design colors */
         body {
-
             background-image: url('https://static.vecteezy.com/system/resources/previews/002/534/933/non_2x/light-blue-gradient-blur-backdrop-vector.jpg');
-            color: #ffffff; /* Text color - dark gray */
+            color: #ffffff; /* Text color - white */
         }
 
         .btn-primary {
-            background-color: #f52222; /* Primary button background color - blue */
-            border-color: #f52222; /* Primary button border color - blue */
+            background-color: #f52222; /* Primary button background color - red */
+            border-color: #f52222; /* Primary button border color - red */
         }
 
         .btn-primary:hover {
@@ -37,7 +36,7 @@
 
         /* Input color change */
         input[type="text"] {
-            color: #808080; /* Gray color for input text */
+            color: #000000; /* Text color - black */
         }
 
         /* Styled label */
@@ -52,17 +51,18 @@
         }
     </style>
 </head>
+
 <body>
 <div layout:fragment="content">
     <div class="d-flex justify-content-center">
-        <form method="get" th:action="@{stocklist}">
-            <label>
-                <input type="text" name="search" th:value="${keyword}"/>
+        <form method="get" th:action="@{indexCustomer}">
+            <label class="styled-label">
+                <input type="text" name="search" th:value="${keyword}" />
             </label>
             <button class="btn btn-primary" type="submit">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi bi-search" viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                 </svg>
             </button>
         </form>
@@ -72,29 +72,40 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Total</th>
+                <th>Nom</th>
+                <th>Téléphone</th>
+                <th>Email</th>
                 <th>Description</th>
+                <th>Mot de passe</th>
+                <th>Utilisateur</th>
+                <th>Mot de passe de confirmation</th>
                 <!-- Add any other table headers here -->
             </tr>
             </thead>
             <tbody>
-            <tr th:each="stock: ${liststocks}">
-                <td><a th:href="@{stockdetails(id=${stock.getId()})}" th:text="${stock.getId()}"></a></td>
-                <td th:text="${stock.getTotal()}"></td>
-                <td th:text="${stock.getDescription()}"></td>
-                <!-- Add other table cells for stock details -->
+            <tr th:each="customer: ${listCustomer}">
+                <td><a th:href="@{detailsCustomer(id=${customer.id})}" th:text="${customer.id}"></a></td>
+                <td th:text="${customer.nom}"></td>
+                <td th:text="${customer.tel}"></td>
+                <td th:text="${customer.email}"></td>
+                <td th:text="${customer.description}"></td>
+                <td th:text="${customer.password}"></td>
+                <td th:text="${customer.username}"></td>
+                <td th:text="${customer.confirmPassword}"></td>
+                <!-- Add other table cells for customer details -->
             </tr>
             </tbody>
         </table>
         <div class="container">
             <ul class="nav nav-pills">
-                <li class="nav-item me-2" th:each="p, stat: ${pages}">
-                    <a th:class="${stat.index} == ${page} ? 'btn btn-primary' : 'btn btn-outline-primary'"
-                       th:text="${stat.index}" th:href="@{liststock(page=${stat.index},search=${keyword})}"></a>
+                <li class="nav-item me-2" th:each="page, stat: ${pages}">
+                    <a th:class="${stat.index} == ${currentPage} ? 'btn btn-primary' : 'btn btn-outline-primary'"
+                       th:text="${stat.index}" th:href="@{indexCustomer(page=${stat.index},search=${keyword})}"></a>
                 </li>
             </ul>
         </div>
     </div>
 </div>
 </body>
+
 </html>

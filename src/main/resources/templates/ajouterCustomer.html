@@ -4,13 +4,12 @@
       layout:decorate="template" lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>Stock List</title>
+    <title>Registration</title>
     <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css"/>
     <script src="webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
     <style>
         /* CSS to change the design colors */
         body {
-
             background-image: url('https://static.vecteezy.com/system/resources/previews/002/534/933/non_2x/light-blue-gradient-blur-backdrop-vector.jpg');
             color: #ffffff; /* Text color - dark gray */
         }
@@ -36,7 +35,7 @@
         }
 
         /* Input color change */
-        input[type="text"] {
+        input[type="text"], input[type="email"], input[type="password"] {
             color: #808080; /* Gray color for input text */
         }
 
@@ -54,46 +53,43 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <div class="d-flex justify-content-center">
-        <form method="get" th:action="@{stocklist}">
-            <label>
-                <input type="text" name="search" th:value="${keyword}"/>
-            </label>
-            <button class="btn btn-primary" type="submit">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                     class="bi bi-search" viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-                </svg>
-            </button>
+    <div class="container" align="center">
+        <form action="/register" method="post" th:object="${customer}">
+            <div class="mb-3">
+                <label for="nom" class="form-label">nom</label>
+                <input type="text" class="form-control w-50" id="nom" name="nom">
+                <span class="text-danger"  th:errors="${Customer.nom}"></span>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Designation</label>
+                <textarea class="form-control w-50" id="description" name="description" maxlength="100"></textarea>
+                <span class="text-danger"  th:errors="${Customer.description}"></span>
+            </div>
+            <div class="mb-3">
+                <label for="tel" class="form-label">tel</label>
+                <input type="text" class="form-control w-50" id="tel" name="tel">
+                <span class="text-danger" th:errors="${Customer.tel}"></span>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">email</label>
+                <input type="text" class="form-control w-50" id="email" name="email">
+                <span class="text-danger"  th:errors="${Customer.email}"></span>
+            </div>
+            <div class="mb-3">
+                <label for="username" class="form-label">username</label>
+                <input type="text" class="form-control w-50" id="username" name="username">
+                <span class="text-danger"  th:errors="${Customer.username}"></span>
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">password</label>
+                <input type="text" class="form-control w-50" id="password" name="password">
+                <span class="text-danger" th:errors="${Customer.password}"></span>
+            </div>
+            <!-- Ajouter d'autres champs si nécessaire -->
+
+            <button type="submit" class="btn btn-primary form-control w-50">Register</button>
         </form>
-    </div>
-    <div class="container">
-        <table class="table">
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>Total</th>
-                <th>Description</th>
-                <!-- Add any other table headers here -->
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="stock: ${liststocks}">
-                <td><a th:href="@{stockdetails(id=${stock.getId()})}" th:text="${stock.getId()}"></a></td>
-                <td th:text="${stock.getTotal()}"></td>
-                <td th:text="${stock.getDescription()}"></td>
-                <!-- Add other table cells for stock details -->
-            </tr>
-            </tbody>
-        </table>
-        <div class="container">
-            <ul class="nav nav-pills">
-                <li class="nav-item me-2" th:each="p, stat: ${pages}">
-                    <a th:class="${stat.index} == ${page} ? 'btn btn-primary' : 'btn btn-outline-primary'"
-                       th:text="${stat.index}" th:href="@{liststock(page=${stat.index},search=${keyword})}"></a>
-                </li>
-            </ul>
-        </div>
     </div>
 </div>
 </body>

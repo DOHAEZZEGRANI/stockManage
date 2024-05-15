@@ -1,56 +1,87 @@
+
+
+
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.com" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template" lang="en">
+
 <head>
-    <meta charset="utf-8"/>
-    <title>Product Details</title>
-    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css"/>
-
+    <meta charset="utf-8" />
+    <title>Index page</title>
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css" />
+    <script src="webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
     <style>
-        /* CSS pour changer la couleur du design */
+        /* CSS to change the design colors */
         body {
-            background-color: #fffdec; /* Couleur de fond */
-            color: #452d41; /* Couleur du texte */
-            font-family: Arial, sans-serif; /* Police de caractères */
-            padding: 20px; /* Espacement intérieur du corps */
-        }
-
-        .container {
-            max-width: 800px; /* Largeur maximale de la section */
-            margin: 0 auto; /* Centrer la section horizontalement */
-            background-color: #ffffff; /* Couleur de fond de la section */
-            padding: 30px; /* Espacement intérieur de la section */
-            border-radius: 8px; /* Bordures arrondies */
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
-        }
-
-        h1 {
-            color: #0c0c0c; /* Couleur du titre principal */
-            margin-bottom: 20px; /* Espacement bas du titre principal */
-        }
-
-        .product-info {
-            margin-bottom: 20px; /* Espacement bas des informations du produit */
+            background-image: url('https://static.vecteezy.com/system/resources/previews/002/534/933/non_2x/light-blue-gradient-blur-backdrop-vector.jpg');
+            color: #ffffff; /* Text color - dark gray */
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
         }
 
         .btn-primary {
-            background-color: #ff007f; /* Couleur du bouton principal */
-            border-color: #ff007f; /* Couleur de la bordure du bouton principal */
+            background-color: #f52222; /* Primary button background color - blue */
+            border-color: #f52222; /* Primary button border color - blue */
         }
 
         .btn-primary:hover {
-            background-color: #000000; /* Couleur du bouton principal au survol */
-            border-color: #e04374; /* Couleur de la bordure du bouton principal au survol */
+            background-color: #0056b3; /* Primary button background color on hover - darker blue */
+            border-color: #0056b3; /* Primary button border color on hover - darker blue */
         }
 
-        .btn-danger,
-        .btn-success {
-            color: #fff; /* Couleur du texte des boutons Edit et Delete */
+        .btn-outline-primary {
+            color: #007bff; /* Secondary button text color - blue */
+            border-color: #007bff; /* Secondary button border color - blue */
+        }
+
+        .btn-outline-primary:hover {
+            color: #0056b3; /* Secondary button text color on hover - darker blue */
+            border-color: #0056b3; /* Secondary button border color on hover - darker blue */
+        }
+
+        /* Input color change */
+        input[type="text"] {
+            color: #808080; /* Gray color for input text */
+        }
+
+        /* Styled label */
+        .styled-label {
+            display: inline-block;
+            background-color: #ffffff; /* Light gray background */
+            color: #333333; /* Dark gray text color */
+            border: 1px solid #d0d0d0; /* Light gray border */
+            border-radius: 5px; /* Rounded corners */
+            padding: 8px 12px; /* Padding for text */
+            margin-bottom: 10px; /* Bottom margin for spacing */
+        }
+
+        /* Container styles */
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Text styles */
+        h1 {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
         }
     </style>
 </head>
-<body>
 
-<div class="container">
+<body>
+<div layout:fragment="content" class="container">
     <h1>Product Details</h1>
 
     <div class="product-info">
@@ -100,4 +131,5 @@
 </div>
 
 </body>
+
 </html>

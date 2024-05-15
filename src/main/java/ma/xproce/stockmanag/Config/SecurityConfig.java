@@ -26,9 +26,9 @@ public class SecurityConfig {
         http
                 .csrf((csrf) -> csrf.disable())
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/ajouter","/details", "/ajouterOnce","/detailsfour", "/ajouterproduit",
+                        .requestMatchers("/ajouter","/details","/ajoutterOnce", "/ajouterOnce","/detailsfour", "/ajouterproduit","/ajouterCustomer",
                                 "/deleteProduit", "/editProduit").authenticated()
-                        .requestMatchers("/indexpage","/liststock","/error", "/register","/listfour","/", "/webjars/**").permitAll())
+                        .requestMatchers("/indexpage","/indexCustomer","/about","/liststock","/error", "/register","/listfour","/", "/webjars/**").permitAll())
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")
                         .permitAll()
@@ -59,7 +59,11 @@ public class SecurityConfig {
                 .password("12345")
                 .roles("user")
                 .build();
-        return new InMemoryUserDetailsManager(adminmanager, admin, user);
+        UserDetails Customer = User.withUsername("Customer")
+                .password("12345")
+                .roles("user")
+                .build();
+        return new InMemoryUserDetailsManager(adminmanager,Customer, admin, user);
     }
 
     @Bean
@@ -69,3 +73,5 @@ public class SecurityConfig {
 
 
 }
+
+

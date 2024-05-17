@@ -8,32 +8,47 @@
     <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css" />
     <script src="webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
     <style>
+        .card .card-title .product-name {
+            font-weight: bold; /* Rendre le texte en gras */
+            color: #d05b46; /* Couleur différente (par exemple, bleu Bootstrap) */
+            font-size:20px;
+            font-family: Serif;
+        }
+        .card {
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        .card-title a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .card-title a:hover {
+            text-decoration: underline;
+        }
         /* CSS to change the design colors */
         body {
-
             background-image: url('https://static.vecteezy.com/system/resources/previews/002/534/933/non_2x/light-blue-gradient-blur-backdrop-vector.jpg');
-            color: #ffffff; /* Text color - dark gray */
+
+            color: #000000; /* Text color - black */
         }
 
+
         .btn-primary {
-            background-color: #f52222; /* Primary button background color - blue */
-            border-color: #f52222; /* Primary button border color - blue */
+            background-color: #ffcccb; /* Primary button background color - light pink */
+            border-color: #ffcccb; /* Primary button border color - light pink */
+            color: #000000; /* Primary button text color - black */
+            padding: 5px 10px; /* Reduce padding for smaller button */
+            font-size: 14px; /* Reduce font size for smaller button */
         }
 
         .btn-primary:hover {
-            background-color: #0056b3; /* Primary button background color on hover - darker blue */
-            border-color: #0056b3; /* Primary button border color on hover - darker blue */
+            background-color: #ffa07a; /* Primary button background color on hover - light salmon */
+            border-color: #ffa07a; /* Primary button border color on hover - light salmon */
+            color: #000000; /* Primary button text color on hover - black */
         }
 
-        .btn-outline-primary {
-            color: #007bff; /* Secondary button text color - blue */
-            border-color: #007bff; /* Secondary button border color - blue */
-        }
 
-        .btn-outline-primary:hover {
-            color: #0056b3; /* Secondary button text color on hover - darker blue */
-            border-color: #0056b3; /* Secondary button border color on hover - darker blue */
-        }
 
         /* Input color change */
         input[type="text"] {
@@ -43,13 +58,111 @@
         /* Styled label */
         .styled-label {
             display: inline-block;
-            background-color: #ffffff; /* Light gray background */
+            background-color: #ffffff; /* White background */
             color: #333333; /* Dark gray text color */
             border: 1px solid #d0d0d0; /* Light gray border */
             border-radius: 5px; /* Rounded corners */
             padding: 8px 12px; /* Padding for text */
             margin-bottom: 10px; /* Bottom margin for spacing */
         }
+
+        /* Table style */
+        table {
+            background-color: #ffffff; /* White background for table */
+            border-radius: 10px; /* Rounded corners for table */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect for table */
+            border-collapse: collapse; /* Collapse borders */
+            width: 100%; /* Full width for table */
+        }
+
+        th, td {
+            padding: 12px; /* Padding for table cells */
+            border-bottom: 2px solid #87ceeb; /* Light sky blue border bottom for cells */
+            border-right: 1px solid #87ceeb; /* Light sky blue border right for cells */
+        }
+
+        th {
+            background-color: #87ceeb; /* Light sky blue background for table header */
+            font-weight: bold; /* Bold font for table header */
+            text-align: left; /* Left align text in table header */
+        }
+
+        tr:nth-child(even) {
+            background-color: #f0f8ff; /* Light
+
+
+
+
+        /* CSS to change the design colors */
+            body {
+                background-color: #aedcf3; /* Baby blue background color */
+                color: #000000; /* Text color - black */
+            }
+
+            .btn-primary {
+                background-color: #ffcccb; /* Primary button background color - light pink */
+                border-color: #ffcccb; /* Primary button border color - light pink */
+                color: #000000; /* Primary button text color - black */
+            }
+
+            .btn-primary:hover {
+                background-color: #ffa07a; /* Primary button background color on hover - light salmon */
+                border-color: #ffa07a; /* Primary button border color on hover - light salmon */
+                color: #000000; /* Primary button text color on hover - black */
+            }
+
+
+
+            /* Input color change */
+            input[type="text"] {
+                color: #808080; /* Gray color for input text */
+            }
+
+            /* Styled label */
+            .styled-label {
+                display: inline-block;
+                background-color: #ffffff; /* White background */
+                color: #333333; /* Dark gray text color */
+                border: 1px solid #d0d0d0; /* Light gray border */
+                border-radius: 5px; /* Rounded corners */
+                padding: 8px 12px; /* Padding for text */
+                margin-bottom: 10px; /* Bottom margin for spacing */
+            }
+
+            /* Table style */
+            table {
+                background-color: #ffffff; /* White background for table */
+                border-radius: 10px; /* Rounded corners for table */
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect for table */
+                border-collapse: collapse; /* Collapse borders */
+                width: 100%; /* Full width for table */
+            }
+
+            th, td {
+                padding: 12px; /* Padding for table cells */
+                border-bottom: 2px solid #87ceeb; /* Light sky blue border bottom for cells */
+                border-right: 1px solid #87ceeb; /* Light sky blue border right for cells */
+            }
+
+            th {
+                background-color: #87ceeb; /* Light sky blue background for table header */
+                font-weight: bold; /* Bold font for table header */
+                text-align: left; /* Left align text in table header */
+            }
+
+            tr:nth-child(even) {
+                background-color: #f0f8ff; /* Light blue background for even rows */
+            }
+
+            tr:hover {
+                background-color: #add8e6; /* Light blue background on hover for rows */
+            }
+
+            /* Centering buttons horizontally */
+            .btn-center {
+                display: flex;
+                justify-content: center;
+            }}
     </style>
 </head>
 
@@ -69,27 +182,28 @@
         </form>
     </div>
     <div class="container">
-        <table class="table">
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Price</th>
-                <!-- Add any other table headers here -->
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="p: ${listProducts}">
-                <td><a th:href="@{details(id=${p.getId()})}" th:text="${p.getId()}"></a></td>
-                <td th:text="${p.getNom()}"></td>
-                <td th:text="${p.getDescription()}"></td>
-                <td th:text="${p.getPrice()}"></td>
-                <!-- Add other table cells for video details -->
-            </tr>
-            </tbody>
-        </table>
-        <div class="container">
+        <div class="row">
+            <div th:each="p: ${listProducts}" class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a th:href="@{details(id=${p.getId()})}" th:text="${p.getNom()}" class="product-name"></a>
+                        </h5>
+
+                        <p><strong>Description:</strong> <span th:text="${p.getDescription()}"></span></p>
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted" th:text="${p.getPrice()}+  MAD"></small>
+                            <button class="btn btn-primary" th:onclick="'addToCart(' + ${p.getId()} + ')'">Ajouter au panier</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
             <ul class="nav nav-pills">
                 <li class="nav-item me-2" th:each="p, stat: ${pages}">
                     <a th:class="${stat.index} == ${page} ? 'btn btn-primary' : 'btn btn-outline-primary'"

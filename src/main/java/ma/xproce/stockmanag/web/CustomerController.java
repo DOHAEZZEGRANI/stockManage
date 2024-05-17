@@ -90,20 +90,13 @@ public class CustomerController {
                                          @RequestParam(name = "id") Integer id,
                                          @RequestParam(name = "nom") String nom,
                                          @RequestParam(name = "tel") String tel,
-                                         @RequestParam(name = "email") String email,
-                                         @RequestParam(name = "description") String description,
-                                         @RequestParam(name = "password") String password,
-                                         @RequestParam(name = "username") String username,
-                                         @RequestParam(name = "confirmPassword") String confirmPassword) {
+                                         @RequestParam(name = "email") String email) {
         Customer customer = customerService.getcustomerById(id);
         if (customer != null) {
             customer.setNom(nom);
             customer.setTel(tel);
             customer.setEmail(email);
-            customer.setDescription(description);
-            customer.setPassword(password);
-            customer.setUsername(username);
-            customer.setConfirmPassword(confirmPassword);
+
             customerService.updatecustomer(customer);
             return "redirect:/indexCustomer";
         } else {

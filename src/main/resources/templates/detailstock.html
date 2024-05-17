@@ -18,63 +18,123 @@
             font-family: Arial, sans-serif;
         }
 
-        .btn-primary {
-            background-color: #f52222; /* Primary button background color - blue */
-            border-color: #f52222; /* Primary button border color - blue */
-        }
-
-        .btn-primary:hover {
-            background-color: #0056b3; /* Primary button background color on hover - darker blue */
-            border-color: #0056b3; /* Primary button border color on hover - darker blue */
-        }
-
-        .btn-outline-primary {
-            color: #007bff; /* Secondary button text color - blue */
-            border-color: #007bff; /* Secondary button border color - blue */
-        }
-
-        .btn-outline-primary:hover {
-            color: #0056b3; /* Secondary button text color on hover - darker blue */
-            border-color: #0056b3; /* Secondary button border color on hover - darker blue */
-        }
-
-        /* Input color change */
-        input[type="text"] {
-            color: #808080; /* Gray color for input text */
-        }
-
-        /* Styled label */
-        .styled-label {
-            display: inline-block;
-            background-color: #ffffff; /* Light gray background */
-            color: #333333; /* Dark gray text color */
-            border: 1px solid #d0d0d0; /* Light gray border */
-            border-radius: 5px; /* Rounded corners */
-            padding: 8px 12px; /* Padding for text */
-            margin-bottom: 10px; /* Bottom margin for spacing */
-        }
-
-        /* Container styles */
         .container {
-            max-width: 800px;
-            margin: 20px auto;
+            border: 1px solid #f7d4eb;
+            border-radius: 10px;
             padding: 20px;
-            border-radius: 5px;
-            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            max-width: 500px;
+            margin: 50px auto;
         }
 
-        /* Text styles */
         h1 {
-            font-size: 36px;
-            font-weight: bold;
+            color: #b367a1;
+            text-align: center;
+            margin-bottom: 100px;
+            font-size: 3em; /* Nouvelle taille de police */
+            font-weight: bold; /* Style le texte en gras */
+            text-transform: uppercase; /* Met le texte en majuscules */
+            font-family: serif; /* Police serif */
+        }
+
+
+        .product-info {
+            text-align: center;
             margin-bottom: 20px;
         }
 
         p {
-            font-size: 18px;
-            line-height: 1.6;
+            color: #666;
+            margin-bottom: 10px;
         }
+
+        .btn {
+            color: #fff;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            font-size: 14px;
+            padding: 8px 12px;
+            margin-top: 10px;
+            width: 150px; /* Définit la largeur des boutons */
+        }
+
+        .btn:hover {
+            color: #fff;
+        }
+
+        .btn-success {
+            background-color: #28a745; /* Vert */
+            border-color: #28a745; /* Bordure de la même couleur */
+        }
+
+        .btn-success:hover {
+            background-color: #218838; /* Vert plus foncé au survol */
+            border-color: #218838;
+        }
+
+        .btn-danger {
+            background-color: #dc3545; /* Rouge */
+            border-color: #dc3545;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333; /* Rouge plus foncé au survol */
+            border-color: #c82333;
+        }
+
+
+        /* Center the buttons */
+        .centered-buttons {
+            text-align: center;
+        }
+
+        .btn-block {
+            display: inline-block;
+            margin: 0 5px;
+        }
+
+        .btn svg {
+            margin-right: 5px;
+        }
+
+        /* Table styling */
+        .table-container {
+            margin: 0 auto; /* Centre le conteneur de la table horizontalement */
+            width: 50%; /* Largeur du conteneur de la table */
+        }
+
+        table {
+            width: 100%; /* Occupe toute la largeur du conteneur */
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #ffffff; /* White background for header cells */
+            color: #333;
+            font-weight: bold;
+            text-align: left;
+            width: 50%;
+            /* Adjust the width of header cells */
+        }
+
+        td {
+            background-color: #f0f0f0; /* Light gray background for data cells */
+            color: #333;
+            text-align: center;
+        }
+
+        /* Align index button to the center */
+        .index-btn {
+            text-align: center;
+            margin-top: 1px;
+        }
+
     </style>
 </head>
 

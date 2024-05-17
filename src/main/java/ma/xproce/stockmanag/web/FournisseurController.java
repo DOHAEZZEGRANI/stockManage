@@ -27,7 +27,7 @@ public class FournisseurController {
             return "ajouterproduit";
         }
         fournisseurService.addFournisseur(fournisseur);
-        return "redirect:/indexpage";
+        return "redirect:/listfour";
     }
 
 

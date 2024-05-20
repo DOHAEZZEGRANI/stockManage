@@ -26,9 +26,9 @@ public class SecurityConfig {
         http
                 .csrf((csrf) -> csrf.disable())
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/ajouter","/ajouterr","/details","/modifierCustomer","/detailsCustomer","/ajoutterOnce", "/ajouterOnce","/ajouterOOnce","/detailsfour", "/ajouterfournisseur","/ajouterproduit","/ajouterCustomer",
+                        .requestMatchers("/ajouter","/panier","/stockdetails","/ajouterr","/addOnce","/details","/modifierCustomer","/detailsCustomer","/ajoutterOnce", "/ajouterOnce","/ajouterOOnce","/detailsfour", "/ajouterfournisseur","/ajouterproduit","/ajouterstock","/ajouterCustomer",
                                 "/deleteProduit","/editCustomer","/editfournisseur","/deleteCustomer", "/editProduit").authenticated()
-                        .requestMatchers("/indexpage","/indexCustomer","/about","/liststock","/error", "/register","/listfour","/", "/webjars/**").permitAll())
+                        .requestMatchers("/indexpage","/indexcommande","/indexCustomer","/about","/liststock","/error", "/register","/listfour","/", "/webjars/**").permitAll())
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")
                         .permitAll()

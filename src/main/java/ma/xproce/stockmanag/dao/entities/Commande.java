@@ -14,6 +14,7 @@ public class Commande {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String description;
+    private Integer quantitecommander;
 
     @ManyToOne
     @JoinColumn(name = "stock_id")

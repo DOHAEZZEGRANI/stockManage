@@ -70,6 +70,16 @@
                 <span class="text-danger"  th:errors="${Product.description}"></span>
             </div>
             <div class="mb-3">
+                <label for="stock" class="form-label">stock</label>
+                <input type="text" class="form-control w-50" id="stock" name="stock">
+                <span class="text-danger"  th:errors="${Product.stock.id}"></span>
+            </div>
+            <div class="mb-3">
+                <label for="quantite" class="form-label">stock</label>
+                <input type="text" class="form-control w-50" id="quantite" name="quantite">
+                <span class="text-danger"  th:errors="${Product.quantite}"></span>
+            </div>
+            <div class="mb-3">
                 <label for="price" class="form-label">Price</label>
                 <input type="text" class="form-control w-50" id="price" name="price">
                 <span class="text-danger" th:errors="${Product.price}"></span>

@@ -1,9 +1,13 @@
 package ma.xproce.stockmanag.web;
 
 import jakarta.validation.Valid;
+import ma.xproce.stockmanag.dao.entities.Commande;
 import ma.xproce.stockmanag.dao.entities.Produit;
 
+import ma.xproce.stockmanag.dao.entities.Stock;
+import ma.xproce.stockmanag.service.CommandeSevice;
 import ma.xproce.stockmanag.service.ProduitService;
+import ma.xproce.stockmanag.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +23,10 @@ public class ProduitController {
 
     @Autowired
     private ProduitService produitService;
+    @Autowired
+    private StockService stockService;
+    @Autowired
+    private CommandeSevice commandeSevice;
 
     @PostMapping("/savevideo")
     public String ajouterprod(Model model,
@@ -54,7 +62,12 @@ public class ProduitController {
     public String detail(Model model,
                               @RequestParam(name = "id") Integer id) {
         Produit produit = produitService.getProduitById(id);
+        Stock stock  = stockService.getStockById(id);
+
+
         model.addAttribute("produitWithDetails", produit);
+        model.addAttribute("stockWithDetails", stock);
+
         return "/detailproduit";
     }
 
@@ -68,6 +81,21 @@ public class ProduitController {
             return "error";
         }
     }
+    @GetMapping("/panier")
+    public String commanderproduit(Model model,
+            @RequestParam(name = "id") Integer id,@RequestParam(name = "quantity") Integer quantity
+                                   ) {
+        Produit produit=produitService.getProduitById(id);
+        Commande commande=new Commande();
+        commande.setStock(produit.getStock());
+        commande.setDescription(produit.getDescription());
+        commande.setQuantitecommander(quantity);
+        commandeSevice.addCommande(commande);
+
+            return "redirect:/liststock";
+
+    }
+
 
 
     @PostMapping("/ajouter")
@@ -93,19 +121,28 @@ public class ProduitController {
     @GetMapping("/ajouterproduit")
     public String ajouterproduit(Model model) {
         model.addAttribute("Product", new Produit());
+        model.addAttribute("Stock", new Stock());
+
         return "ajouterproduit";
     }
 
 
 
     @PostMapping("/ajouterOnce")
-    public String ajouterproduit(Model model,
+    public String ajouterproduit(Model model, @Valid Stock stock,
+
+
                                  @Valid Produit produit,
                                  BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "ajouterproduit";
-        }
+
+
+        stock.setTotal(produit.getQuantite());
+
+        produit.setStock(stock);
+
+        stockService.addStock(stock);
         produitService.addProduit(produit);
+
         return "redirect:/indexpage";
     }
 

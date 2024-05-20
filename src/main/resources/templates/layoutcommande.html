@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Index page</title>
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css"/>
+    <script src="webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+    <style>
+        /* CSS to change the design colors */
+        body {
+            background-image: url('https://static.vecteezy.com/system/resources/previews/002/534/933/non_2x/light-blue-gradient-blur-backdrop-vector.jpg');
+            color: #000000; /* Text color - black */
+        }
+
+        .btn-primary {
+            background-color: #ffcccb; /* Primary button background color - light pink */
+            border-color: #ffcccb; /* Primary button border color - light pink */
+            color: #000000; /* Primary button text color - black */
+            padding: 5px 10px; /* Reduce padding for smaller button */
+            font-size: 14px; /* Reduce font size for smaller button */
+        }
+
+        .btn-primary:hover {
+            background-color: #ffa07a; /* Primary button background color on hover - light salmon */
+            border-color: #ffa07a; /* Primary button border color on hover - light salmon */
+            color: #000000; /* Primary button text color on hover - black */
+        }
+
+        /* Input color change */
+        input[type="text"] {
+            color: #808080; /* Gray color for input text */
+        }
+
+        /* Styled label */
+        .styled-label {
+            display: inline-block;
+            background-color: #ffffff; /* White background */
+            color: #333333; /* Dark gray text color */
+            border: 1px solid #d0d0d0; /* Light gray border */
+            border-radius: 5px; /* Rounded corners */
+            padding: 8px 12px; /* Padding for text */
+            margin-bottom: 10px; /* Bottom margin for spacing */
+        }
+
+        /* Table style */
+        table {
+            background-color: #ffffff; /* White background for table */
+            border-radius: 10px; /* Rounded corners for table */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect for table */
+            border-collapse: collapse; /* Collapse borders */
+            width: 100%; /* Full width for table */
+        }
+
+        th, td {
+            padding: 12px; /* Padding for table cells */
+            border-bottom: 2px solid #87ceeb; /* Light sky blue border bottom for cells */
+            border-right: 1px solid #87ceeb; /* Light sky blue border right for cells */
+        }
+
+        th {
+            background-color: #87ceeb; /* Light sky blue background for table header */
+            font-weight: bold; /* Bold font for table header */
+            text-align: left; /* Left align text in table header */
+        }
+
+        tr:nth-child(even) {
+            background-color: #f0f8ff; /* Light blue background for even rows */
+        }
+
+        tr:hover {
+            background-color: #add8e6; /* Light blue background on hover for rows */
+        }
+
+        /* Centering buttons horizontally */
+        .btn-center {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="d-flex justify-content-center">
+        <form method="get" th:action="@{indexcommande}">
+            <label class="styled-label">
+                <input type="text" name="search" th:value="${keyword}" />
+            </label>
+            <button class="btn btn-primary" type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                </svg>
+            </button>
+        </form>
+    </div>
+    <div class="container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Description</th>
+                <th>Quantity Ordered</th>
+                <th>Stock</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="p: ${listCommandes}">
+                <td th:text="${p.id}"></td>
+                <td th:text="${p.description}"></td>
+                <td th:text="${p.quantitecommander}"></td>
+                <td th:text="${p.stock.id}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="container">
+            <ul class="nav nav-pills">
+                <li class="nav-item me-2" th:each="p, stat: ${pages}">
+                    <a th:class="${stat.index} == ${page} ? 'btn btn-primary' : 'btn btn-outline-primary'"
+                       th:text="${stat.index}" th:href="@{indexcommande(page=${stat.index},search=${keyword})}"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

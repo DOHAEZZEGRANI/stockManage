@@ -19,14 +19,16 @@ public class Produit {
     private String nom;
     private String description;
     private double price;
+    private Integer quantite;
 
-    @OneToMany(mappedBy = "produit")
-    private List<Reclamation> reclamations = new ArrayList<>();
-    @ManyToMany(mappedBy = "achats")
+     @ManyToMany(mappedBy = "achats")
     private List<Customer> clients = new ArrayList<>();
     // Produit entity
     @ManyToOne
     @JoinColumn(name = "fournisseur_id")
     private Fournisseur fournisseur;
+    @ManyToOne
+    @JoinColumn(name = "stock_id")
+    private Stock stock;
 
 }

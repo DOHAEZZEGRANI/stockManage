@@ -19,7 +19,7 @@ public class Stock {
     private Integer total;
     private String description;
 
-    @OneToMany(mappedBy = "stock")
-    private List<Lignedecommande> lignesCommande = new ArrayList<>();
+   @OneToMany(mappedBy = "stock")
+    private List<Produit> produits = new ArrayList<>();
 
 }

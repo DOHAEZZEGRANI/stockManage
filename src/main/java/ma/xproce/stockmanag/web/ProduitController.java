@@ -195,7 +195,7 @@ public class ProduitController {
     public String re() {
         return "RegisterCustomer"; // Votre page de connexion
     }
-    @GetMapping("/chooselogin")
+    @GetMapping("")
     public String choose() {
         return "log"; // Votre page de connexion
     }

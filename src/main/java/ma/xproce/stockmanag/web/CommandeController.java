@@ -45,6 +45,29 @@ public class CommandeController {
     public String accommande() {
         return "redirect:/indexpage";
     }
+    @GetMapping("listcomande")
+    public String listCo(Model model,
+                               @RequestParam(name = "page", defaultValue = "0") int page,
+                               @RequestParam(name = "taille", defaultValue = "6") int taille,
+                               @RequestParam(name = "search", defaultValue = "") String keyword) {
+        Page<Commande> Commandes = CommandeService.searchCommandes(keyword, page, taille);
+        model.addAttribute("listCommandes", Commandes.getContent());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal = authentication.getPrincipal();
+        UserDetails userDetails = (UserDetails) principal;
+        String username = userDetails.getUsername();
+        Customer customer=customerService.findByUsername(username);
+        model.addAttribute("Customer", customer);
+
+
+        int[] pages = new int[Commandes.getTotalPages()];
+        model.addAttribute("pages", pages);
+
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("page", page);
+
+        return "listcommande";
+    }
 
 
 

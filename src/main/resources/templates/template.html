@@ -130,18 +130,22 @@
                             <a class="text-black px-3 py-2 rounded-md text-sm font-medium" th:href="@{indexpage}">List produit</a>
                             <a sec:authorize="hasRole('ADMIN')" class="text-black px-3 py-2 rounded-md text-sm font-medium " th:href="@{listfour}">List Fournisseur</a>
                             <a class="text-black px-3 py-2 rounded-md text-sm font-medium" th:href="@{liststock}">List stock</a>
-                            <a sec:authorize="hasRole('ADMIN')" class="text-black px-3 py-2 rounded-md text-sm font-medium" th:href="@{indexCustomer}">List cu</a>
+                            <a sec:authorize="hasRole('ADMIN')" class="text-black px-3 py-2 rounded-md text-sm font-medium" th:href="@{indexCustomer}">Users</a>
+                            <a sec:authorize="hasRole('ADMIN')" class="text-black px-3 py-2 rounded-md text-sm font-medium" th:href="@{listcomande}">Commande</a>
                             <a class="text-black px-3 py-2 rounded-md text-sm font-medium" th:href="@{about}">About us</a>
                             <a sec:authorize="hasRole('ADMIN')" class="nav-link dropdown-toggle text-black px-3 py-2 rounded-md text-sm font-medium" href="#" id="navbarDropdownMenuLink" role="button"
                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Manage
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M4 6h12a1 1 0 010 2H4a1 1 0 010-2zM4 10h12a1 1 0 010 2H4a1 1 0 010-2zM4 14h12a1 1 0 010 2H4a1 1 0 010-2z" clip-rule="evenodd" />
+                                </svg>
+                                Settings
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a class="dropdown-item" th:href="@{ajouterproduit}">Add Product</a></li>
                                 <li><a class="dropdown-item" th:href="@{ajouterfournisseur}">Add fournisseur</a></li>
-                                <li><a class="dropdown-item" th:href="@{ajouterstock}">Add stock</a></li>
-                                <li><a class="dropdown-item" th:href="@{ajouterCustomer}">Add customer</a></li>
+
                             </ul>
+
                         </div>
                     </div>
                 </div>

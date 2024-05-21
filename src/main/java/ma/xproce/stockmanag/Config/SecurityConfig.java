@@ -35,7 +35,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/ajouterco","deleteco","/validation","/editCommande","/panier","/stockdetails","/ajouterr","/addOnce","/details","/modifierCustomer","/detailsCustomer","/ajoutterOnce", "/ajouterOOnce","/detailsfour", "/ajouterfournisseur","/ajouterstock","/ajouterCustomer",
                                 "/deleteProduit","/editCustomer","/editfournisseur","/deleteCustomer", "/editProduit").authenticated()
-                        .requestMatchers("/indexpage","/admin/register","/chooselogin","/AdminRegister","/indexcommande","/indexCustomer","/register","/Dashboard","/about","/ajouter","/home","/liststock","/error", "/Register","/ajouterOnce","/listfour","/","/home","/ajouterproduit", "/webjars/**").permitAll())
+                        .requestMatchers("/indexpage","/listcomande","/admin/register","/chooselogin","/AdminRegister","/indexcommande","/indexCustomer","/register","/Dashboard","/about","/ajouter","/home","/liststock","/error", "/Register","/ajouterOnce","/listfour","/","/home","/ajouterproduit", "/webjars/**").permitAll())
 
 
 

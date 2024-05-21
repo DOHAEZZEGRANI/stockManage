@@ -11,15 +11,15 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .bt-primary {
-            background-color: #fff8cb; /* Primary button background color - light pink */
-            border-color: #ffcccb; /* Primary button border color - light pink */
+            background-color: #ffcccb; /* Primary button background color - light pink */
+            border-color: #fff8cb; /* Primary button border color - light pink */
             color: #000000; /* Primary button text color - black */
             padding: 5px 10px; /* Reduce padding for smaller button */
             font-size: 14px; /* Reduce font size for smaller button */
         }
 
         .bt-primary:hover {
-            background-color: #ffcccb; /* Primary button background color on hover - light salmon */
+            background-color: #fff8cb; /* Primary button background color on hover - light salmon */
             border-color: #ffa07a; /* Primary button border color on hover - light salmon */
             color: #000000; /* Primary button text color on hover - black */
         }
@@ -32,6 +32,84 @@
             text-transform: uppercase; /* Met le texte en majuscules */
             font-family: serif; /* Police serif */
         }
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+        .roboto-thin {
+            font-family: "Roboto", sans-serif;
+            font-weight: 100;
+            font-style: normal;
+        }
+
+        .roboto-light {
+            font-family: "Roboto", sans-serif;
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        .roboto-regular {
+            font-family: "Roboto", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .roboto-medium {
+            font-family: "Roboto", sans-serif;
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        .roboto-bold {
+            font-family: "Roboto", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        .roboto-black {
+            font-family: "Roboto", sans-serif;
+            font-weight: 900;
+            font-style: normal;
+        }
+
+        .roboto-thin-italic {
+            font-family: "Roboto", sans-serif;
+            font-weight: 100;
+            font-style: italic;
+        }
+
+        .roboto-light-italic {
+            font-family: "Roboto", sans-serif;
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        .roboto-regular-italic {
+            font-family: "Roboto", sans-serif;
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        .roboto-medium-italic {
+            font-family: "Roboto", sans-serif;
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        .roboto-bold-italic {
+            font-family: "Roboto", sans-serif;
+            font-weight: 700;
+            font-style: italic;
+        }
+
+        .roboto-black-italic {
+            font-family: "Roboto", sans-serif;
+            font-weight: 900;
+            font-style: italic;
+        }
+        /* Hover effect */
+        a:hover {
+            color: white;
+        }
+
 
     </style>
 </head>
@@ -48,29 +126,28 @@
                         <img class="h-14 w-16" src="https://www.e-monsite.com/medias/images/ventes.png" alt="Your Company">
                     </div>
                     <div class="hidden md:block">
-                        <div class="ml-10 flex items-baseline space-x-4">
+                        <div class="ml-10 flex items-baseline space-x-4 roboto-regular ">
                             <a class="text-black px-3 py-2 rounded-md text-sm font-medium" th:href="@{indexpage}">List produit</a>
-                            <a class="text-black px-3 py-2 rounded-md text-sm font-medium" th:href="@{listfour}">List Fournisseur</a>
+                            <a sec:authorize="hasRole('ADMIN')" class="text-black px-3 py-2 rounded-md text-sm font-medium " th:href="@{listfour}">List Fournisseur</a>
                             <a class="text-black px-3 py-2 rounded-md text-sm font-medium" th:href="@{liststock}">List stock</a>
-                            <a class="text-black px-3 py-2 rounded-md text-sm font-medium" th:href="@{indexCustomer}">List cu</a>
+                            <a sec:authorize="hasRole('ADMIN')" class="text-black px-3 py-2 rounded-md text-sm font-medium" th:href="@{indexCustomer}">List cu</a>
                             <a class="text-black px-3 py-2 rounded-md text-sm font-medium" th:href="@{about}">About us</a>
-                            <a class="text-black px-3 py-2 rounded-md text-sm font-medium" th:href="@{indexcommande}"> panier</a>
-                            <a class="nav-link dropdown-toggle text-black px-3 py-2 rounded-md text-sm font-medium" href="#" id="navbarDropdownMenuLink" role="button"
+                            <a sec:authorize="hasRole('ADMIN')" class="nav-link dropdown-toggle text-black px-3 py-2 rounded-md text-sm font-medium" href="#" id="navbarDropdownMenuLink" role="button"
                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Manage
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a class="dropdown-item" th:href="@{ajouterproduit}">Add Product</a></li>
-                                <li sec:authorize="hasRole('user')"><a class="dropdown-item" th:href="@{ajouterfournisseur}">Add fournisseur</a></li>
+                                <li><a class="dropdown-item" th:href="@{ajouterfournisseur}">Add fournisseur</a></li>
                                 <li><a class="dropdown-item" th:href="@{ajouterstock}">Add stock</a></li>
                                 <li><a class="dropdown-item" th:href="@{ajouterCustomer}">Add customer</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="hidden md:block">
-                    <div class="ml-4 flex items-center md:ml-6">
-                        <a href="indexcommande">
+                <div class="hidden md:block" >
+                    <div class="ml-4 flex items-center md:ml-6" >
+                        <a href="indexcommande" sec:authorize="hasRole('USER')">
                             <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                                 <span class="absolute -inset-1.5"></span>
                                 <span class="sr-only">View cart</span>
@@ -119,16 +196,14 @@
         </div>
     </main>
 </div>
-<div class="p-3 m-2">
-    <div class="card">
-        <div class="card-header">
-        </div>
-        <div class="card-body">
+
+    <div class="card ">
+        <div class="card-body ">
             <section layout:fragment="content"></section>
         </div>
 
     </div>
-</div>
+
 </body>
 
 

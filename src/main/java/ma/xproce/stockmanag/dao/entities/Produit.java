@@ -20,6 +20,7 @@ public class Produit {
     private String description;
     private double price;
     private Integer quantite;
+    private String imageUrl;
 
      @ManyToMany(mappedBy = "achats")
     private List<Customer> clients = new ArrayList<>();

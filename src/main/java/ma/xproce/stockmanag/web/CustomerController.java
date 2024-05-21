@@ -17,40 +17,41 @@ public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-    @PostMapping("/login")
-    public String loginCustomer(@RequestParam("username") String username,
-                                @RequestParam("password") String password,
-                                HttpSession session) {
-        Customer customer = customerService.findByUsername(username);
 
-        if (customer != null && passwordEncoder.matches(password, customer.getPassword())) {
-            // Authentification réussie
-            session.setAttribute("loggedInCustomer", customer);
-            return "redirect:/indexlayout"; // Rediriger vers le tableau de bord après connexion
-        } else {
-            // Authentification échouée, rediriger vers la page de connexion avec un message d'erreur
-            return "redirect:/login?error=true";
-        }
-    }
-    @GetMapping("/register")
-    public String showRegistrationForm(Model model) {
-        model.addAttribute("customer", new Customer());
-        return "ajouterCustomer";
-    }
+
 
     @PostMapping("/register")
-    public String registerCustomer(@ModelAttribute("customer") @Valid Customer customer,
-                                   BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "ajouterCustomer";
-        }
+    public String registerUser(@RequestParam(name = "nom") String nom,
+                               @RequestParam(name = "tel") String tel,
+                               @RequestParam(name = "email") String email,
+                               @RequestParam(name = "username") String username,
+                               @RequestParam(name = "password") String password) {
+        try {
+            Customer customer = new Customer();
+            customer.setNom(nom);
+            customer.setTel(tel);
+            customer.setEmail(email);
+            customer.setUsername(username);
+            customer.setPassword(password);
 
-        customer.setPassword(passwordEncoder.encode(customer.getPassword()));
-        customerService.addcustomer(customer);
-        return "redirect:/login"; // Assuming this is the correct redirect URL
+            Customer addedCustomer = customerService.addcustomer(customer);
+            if (addedCustomer != null) {
+                System.out.println("Customer added successfully: " + addedCustomer);
+            } else {
+                System.out.println("Failed to add customer. Please try again.");
+            }
+
+            return "redirect:login";
+        } catch (Exception e) {
+            // Log the exception (you can use a logging framework here)
+            System.err.println("An error occurred while registering the customer: " + e.getMessage());
+            e.printStackTrace();
+
+            // You can also return a different view in case of error
+            return "redirect:error";
+        }
     }
+
 
     @PostMapping("/saveCustomer")
     public String ajoutercustomer(Model model,

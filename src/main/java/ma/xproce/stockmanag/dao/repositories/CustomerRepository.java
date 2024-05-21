@@ -9,8 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 @Transactional
 public interface CustomerRepository extends JpaRepository<Customer,Integer> {
-    Customer findByUsername(String username);
-    Page<Customer> findByDescriptionContains(String keyword, Pageable pageable);
+   public Customer findCustomerByUsername(String username);
+    Page<Customer> findByUsernameContains(String keyword, Pageable pageable);
 
 }
 

@@ -2,6 +2,9 @@ package ma.xproce.stockmanag.Config;
 
 
 
+import ma.xproce.stockmanag.service.AdminUserDetailsService;
+import ma.xproce.stockmanag.service.CustomerUserDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -20,58 +23,53 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    @Autowired
+    private CustomerUserDetailsService customUserDetailsService;
+    @Autowired
+    private AdminUserDetailsService adminUserDetailsService;
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
 
         http
                 .csrf((csrf) -> csrf.disable())
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/ajouter","/panier","/stockdetails","/ajouterr","/addOnce","/details","/modifierCustomer","/detailsCustomer","/ajoutterOnce", "/ajouterOnce","/ajouterOOnce","/detailsfour", "/ajouterfournisseur","/ajouterproduit","/ajouterstock","/ajouterCustomer",
+                        .requestMatchers("/ajouterco","deleteco","/validation","/editCommande","/panier","/stockdetails","/ajouterr","/addOnce","/details","/modifierCustomer","/detailsCustomer","/ajoutterOnce", "/ajouterOOnce","/detailsfour", "/ajouterfournisseur","/ajouterstock","/ajouterCustomer",
                                 "/deleteProduit","/editCustomer","/editfournisseur","/deleteCustomer", "/editProduit").authenticated()
-                        .requestMatchers("/indexpage","/indexcommande","/indexCustomer","/about","/liststock","/error", "/register","/listfour","/", "/webjars/**").permitAll())
-                .formLogin(formLogin -> formLogin
-                        .loginPage("/login")
-                        .permitAll()
-                )
-                .logout(logout -> logout
-                        .logoutSuccessUrl("/login?logout")
-                        .permitAll()
-                )
-                .formLogin(Customizer.withDefaults())
-                .httpBasic(Customizer.withDefaults());
-
-        return http.build();
-    }
-
-    @Bean
-    public InMemoryUserDetailsManager userDetailsService() {
-        UserDetails adminmanager = User.withUsername("adminmanager")
-                .password("12345")
-                .roles("managetable", "delete", "update")
-                //.roles("admin")
-                .build();
-        UserDetails admin = User.withUsername("admin")
-                .password("12345")
-                //.authorities("admin")
-                .roles("admin")
-                .build();
-        UserDetails user = User.withUsername("user")
-                .password("12345")
-                .roles("user")
-                .build();
-        UserDetails Customer = User.withUsername("Customer")
-                .password("12345")
-                .roles("user")
-                .build();
-        return new InMemoryUserDetailsManager(adminmanager,Customer, admin, user);
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
-    }
+                        .requestMatchers("/indexpage","/admin/register","/chooselogin","/AdminRegister","/indexcommande","/indexCustomer","/register","/Dashboard","/about","/ajouter","/home","/liststock","/error", "/Register","/ajouterOnce","/listfour","/","/home","/ajouterproduit", "/webjars/**").permitAll())
 
 
-}
 
+                        .formLogin(form -> form
+                                .loginPage("/login")
+                                .defaultSuccessUrl("/indexpage", true)
+                                .successHandler((request, response, authentication) -> {
+                                    String redirectUrl = authentication.getAuthorities().stream()
+                                            .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN")) ? "/home" : "/home";
+                                    response.sendRedirect(redirectUrl);
+                                })
+                                .permitAll()
+                        )
+                        .logout(logout -> logout
+                                .logoutUrl("/logout")
+                                .logoutSuccessUrl("/login")
+                                .invalidateHttpSession(true)
+                                .clearAuthentication(true)
+                                .deleteCookies("JSESSIONID")
+                        );
+
+                return http.build();
+            }
+
+            @Autowired
+            public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+                auth.userDetailsService(customUserDetailsService);
+                auth.userDetailsService(adminUserDetailsService);
+
+            }
+
+            @Bean
+            public PasswordEncoder passwordEncoder() {
+                return NoOpPasswordEncoder.getInstance();
+            }
+        }
 

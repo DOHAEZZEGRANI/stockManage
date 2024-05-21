@@ -10,55 +10,66 @@
     <style>
         /* CSS pour changer la couleur du design */
         body {
-            background-color: #090909; /* Couleur de fond jaune */
+            background-color: #ffffff; /* Couleur de fond jaune */
             color: #ff007f; /* Couleur du texte rose */
         }
 
         .btn-primary {
-            background-color: #ff007f; /* Couleur du bouton principal rose */
-            border-color: #ff007f; /* Couleur de la bordure du bouton principal rose */
+            background-color: #f52222; /* Primary button background color - blue */
+            border-color: #f52222; /* Primary button border color - blue */
         }
 
         .btn-primary:hover {
-            background-color: #ff66b2; /* Couleur du bouton principal au survol rose clair */
-            border-color: #ff66b2; /* Couleur de la bordure du bouton principal au survol rose clair */
+            background-color: #0056b3; /* Primary button background color on hover - darker blue */
+            border-color: #0056b3;/* Couleur de la bordure du bouton principal au survol rose clair */
         }
 
         .btn-outline-primary {
-            color: #ff007f; /* Couleur du texte du bouton secondaire rose */
+            color: #8B0000; /* Couleur du texte du bouton secondaire rose */
             border-color: #ff007f; /* Couleur de la bordure du bouton secondaire rose */
+            font-weight: bold; /* Mettre la police en gras */
         }
 
         .btn-outline-primary:hover {
-            color: #ff66b2; /* Couleur du texte du bouton secondaire au survol rose clair */
-            border-color: #ff66b2; /* Couleur de la bordure du bouton secondaire au survol rose clair */
+            color: #ff007f; /* Couleur du texte du bouton secondaire au survol rose clair */
+            border-color: #ff007f; /* Couleur de la bordure du bouton secondaire au survol rose clair */
+            /* Mettre la police en gras */
         }
+
+        .btn-outline-primary:hover {
+            color: #ff007f; /* Couleur du texte du bouton secondaire au survol rose clair */
+            border-color: #ff007f;
+            font-weight: bold; /* Couleur de la bordure du bouton secondaire au survol rose clair */
+        }
+
     </style>
 
 </head>
 <body>
 <div layout:fragment="content">
-    <div class="p-3 m-2">
-    <div class="card">
-        <div class="card-header">Modifier Produit</div>
-        <div class="card-body">
+    <div class="container" align="center">
+        <div class="btn-outline-primary font-weight-bold fs-5 font-serif">Modifier Produit</div>
+
+        <div class="card-body w-50">
 
             <div class="form-group">
                 <form class="form-inline" action="/ajouter" method="post">
                     <input type="hidden" name="id" th:value="${productToBeUpdated.getId()}">
-                    Title: <input class="form-control" name="nom" type="text"
-                                  th:value="${productToBeUpdated.getNom()}">
-                    Designation: <input class="form-control" name="description" type="text"
-                                        th:value="${productToBeUpdated.getDescription()}">
-                    Price: <input class="form-control" name="price" type="text"
-                                  th:value="${productToBeUpdated.getPrice()}">
+                    <strong>Title:</strong><input  class=" form-control w-50 " name="nom" type="text"
+                                                   th:value="${productToBeUpdated.getNom()}">
+                    <strong>Designation:</strong><input class="form-control w-50" name="description" type="text"
+                                                        th:value="${productToBeUpdated.getDescription()}">
+                    <strong>Price:</strong><input class="form-control w-50" name="price" type="text"
+                                                  th:value="${productToBeUpdated.getPrice()}">
+                    <strong>Image URL:</strong><input class="form-control w-50" name="imageUrl" type="text"
+                                                      th:value="${productToBeUpdated.getImageUrl()}">
                     <br>
-                    <input class="btn btn-primary form-control" type="submit" value="Modifier">
+                    <input class="btn btn-primary form-control w-50" type="submit" value="Modifier">
                 </form>
             </div>
         </div>
     </div>
-</div>
+
 </div>
 
 </body>

@@ -15,8 +15,13 @@ public class Commande {
     private Integer id;
     private String description;
     private Integer quantitecommander;
+    private Boolean valider;
+
 
     @ManyToOne
     @JoinColumn(name = "stock_id")
     private Stock stock;
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 }

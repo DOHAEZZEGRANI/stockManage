@@ -14,6 +14,7 @@ public interface CustomerService {
     public List<Customer> getByKeyword(String keyword);
     public Customer getcustomerById(Integer id);
     public Customer updatecustomer(Customer customer);
+
     public Boolean deletecustomer(Integer id);
 
     Customer findByUsername(String username);

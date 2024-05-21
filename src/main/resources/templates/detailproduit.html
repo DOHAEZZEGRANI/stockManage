@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.com" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
       layout:decorate="template" lang="en">
 
 <head>
@@ -170,7 +171,7 @@
     </div>
 
     <!-- Center the buttons -->
-    <div class="centered-buttons">
+    <div class="centered-buttons" sec:authorize="hasRole('ADMIN')" >
         <a class="btn btn-success d-inline-flex align-items-center text-center" onclick="return confirm('Are you sure you want to edit this product?');"
            th:href="@{editProduit(id=${produitWithDetails.getId()})}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil"

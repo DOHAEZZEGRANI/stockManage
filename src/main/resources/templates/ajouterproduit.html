@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.com"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html xmlns:th="http://www.thymeleaf.com" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="template" lang="en">
+
 <head>
     <meta charset="utf-8"/>
     <title>Index page</title>
@@ -52,9 +52,8 @@
             margin-bottom: 10px; /* Bottom margin for spacing */
         }
     </style>
-
-
 </head>
+
 <body>
 <div layout:fragment="content">
     <div class="container" align="center">
@@ -62,32 +61,37 @@
             <div class="mb-3">
                 <label for="nom" class="form-label">nom</label>
                 <input type="text" class="form-control w-50" id="nom" name="nom">
-                <span class="text-danger"  th:errors="${Product.nom}"></span>
+                <span class="text-danger" th:errors="${Product.nom}"></span>
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Designation</label>
                 <textarea class="form-control w-50" id="description" name="description" maxlength="100"></textarea>
-                <span class="text-danger"  th:errors="${Product.description}"></span>
+                <span class="text-danger" th:errors="${Product.description}"></span>
             </div>
             <div class="mb-3">
                 <label for="stock" class="form-label">stock</label>
                 <input type="text" class="form-control w-50" id="stock" name="stock">
-                <span class="text-danger"  th:errors="${Product.stock.id}"></span>
+                <span class="text-danger" th:errors="${Product.stock.id}"></span>
             </div>
             <div class="mb-3">
-                <label for="quantite" class="form-label">stock</label>
+                <label for="quantite" class="form-label">Quantité</label>
                 <input type="text" class="form-control w-50" id="quantite" name="quantite">
-                <span class="text-danger"  th:errors="${Product.quantite}"></span>
+                <span class="text-danger" th:errors="${Product.quantite}"></span>
             </div>
             <div class="mb-3">
                 <label for="price" class="form-label">Price</label>
                 <input type="text" class="form-control w-50" id="price" name="price">
                 <span class="text-danger" th:errors="${Product.price}"></span>
             </div>
+            <div class="mb-3">
+                <label for="imageUrl" class="form-label">Image URL</label>
+                <input type="text" class="form-control w-50" id="imageUrl" name="imageUrl">
+                <span class="text-danger" th:errors="${Product.imageUrl}"></span>
+            </div>
             <button type="submit" class="btn btn-primary form-control w-50" value="Ajouter">Ajouter</button>
         </form>
     </div>
-    </div>
-
+</div>
 </body>
+
 </html>

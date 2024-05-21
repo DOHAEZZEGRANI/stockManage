@@ -11,27 +11,16 @@ import java.util.NoSuchElementException;
 @Service
 public class AdminManager implements AdminService{
     @Autowired
-    private AdminRepository adminRepository;
-
+    private AdminRepository ar;
     @Override
-    public Admin creerAdmin(Admin admin) {
-        return adminRepository.save(admin);
+    public Admin FindAdminByUserName(String username) {
+        return ar.findByUsername(username);
+
     }
 
     @Override
-    public Admin obtenirAdminParId(Integer id) {
-        return adminRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Admin introuvable"));
-    }
-
-    @Override
-    public List<Admin> obtenirTousLesAdmins() {
-        return adminRepository.findAll();
-    }
-
-    @Override
-    public void supprimerAdmin(Integer id) {
-        adminRepository.deleteById(id);
+    public Admin AddAdmin(Admin admin) {
+        return ar.save(admin);
     }
 
 }

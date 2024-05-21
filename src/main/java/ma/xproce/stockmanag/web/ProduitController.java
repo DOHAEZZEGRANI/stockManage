@@ -2,15 +2,20 @@ package ma.xproce.stockmanag.web;
 
 import jakarta.validation.Valid;
 import ma.xproce.stockmanag.dao.entities.Commande;
+import ma.xproce.stockmanag.dao.entities.Customer;
 import ma.xproce.stockmanag.dao.entities.Produit;
 
 import ma.xproce.stockmanag.dao.entities.Stock;
 import ma.xproce.stockmanag.service.CommandeSevice;
+import ma.xproce.stockmanag.service.CustomerService;
 import ma.xproce.stockmanag.service.ProduitService;
 import ma.xproce.stockmanag.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,6 +32,8 @@ public class ProduitController {
     private StockService stockService;
     @Autowired
     private CommandeSevice commandeSevice;
+    @Autowired
+    private CustomerService customerService;
 
     @PostMapping("/savevideo")
     public String ajouterprod(Model model,
@@ -45,7 +52,7 @@ public class ProduitController {
         return "redirect:/indexpage";
     }
 
-    @GetMapping("")
+    @GetMapping("home")
     public String accu() {
         return "home";
     }
@@ -85,14 +92,20 @@ public class ProduitController {
     public String commanderproduit(Model model,
             @RequestParam(name = "id") Integer id,@RequestParam(name = "quantity") Integer quantity
                                    ) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal = authentication.getPrincipal();
+        UserDetails userDetails = (UserDetails) principal;
+        String username = userDetails.getUsername();
+        Customer customer=customerService.findByUsername(username);
         Produit produit=produitService.getProduitById(id);
         Commande commande=new Commande();
         commande.setStock(produit.getStock());
         commande.setDescription(produit.getDescription());
         commande.setQuantitecommander(quantity);
+        commande.setCustomer(customer);
         commandeSevice.addCommande(commande);
 
-            return "redirect:/liststock";
+            return "redirect:/indexcommande";
 
     }
 
@@ -121,7 +134,8 @@ public class ProduitController {
     @GetMapping("/ajouterproduit")
     public String ajouterproduit(Model model) {
         model.addAttribute("Product", new Produit());
-        model.addAttribute("Stock", new Stock());
+        List<Stock> stocks=stockService.getAllStocks();
+        model.addAttribute("Stock", stocks);
 
         return "ajouterproduit";
     }
@@ -168,16 +182,22 @@ public class ProduitController {
     @GetMapping("/editProduit")
     public String editproduitAction(Model model, @RequestParam(name = "id") Integer id) {
         Produit produit = produitService.getProduitById(id);
-        if (produit != null) {
+
             model.addAttribute("productToBeUpdated", produit);
             return "updateProduct";
-        } else {
-            return "error";
-        }
+
     }
     @GetMapping("/login")
     public String login() {
         return "login"; // Votre page de connexion
+    }
+    @GetMapping("/Register")
+    public String re() {
+        return "RegisterCustomer"; // Votre page de connexion
+    }
+    @GetMapping("/chooselogin")
+    public String choose() {
+        return "log"; // Votre page de connexion
     }
 }
 

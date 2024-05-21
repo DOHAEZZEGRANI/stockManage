@@ -53,7 +53,7 @@ public class CustomerManager implements  CustomerService {
 
     @Override
     public Page<Customer> searchcustomers(String keyword, int page, int taille) {
-        return customerRepository.findByDescriptionContains(keyword, (Pageable) PageRequest.of(page, taille));
+        return customerRepository.findByUsernameContains(keyword, (Pageable) PageRequest.of(page, taille));
     }
 
     @Override
@@ -88,8 +88,9 @@ public class CustomerManager implements  CustomerService {
 
     @Override
     public Customer findByUsername(String username) {
-        return customerRepository.findByUsername(username);
+        return customerRepository.findCustomerByUsername(username);
     }
+
 
 
 }

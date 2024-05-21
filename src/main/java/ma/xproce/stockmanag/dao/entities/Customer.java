@@ -20,10 +20,10 @@ public class Customer {
     private String nom;
     private String tel;
     private String email;
-    private String description;
+
     private String password;
     private String username;
-    private String confirmPassword;
+
     @ManyToMany
     @JoinTable(
             name = "achat",
@@ -34,4 +34,6 @@ public class Customer {
     @ManyToOne
     @JoinColumn(name = "admin_id")
     private Admin admin;
+    @OneToMany(mappedBy = "customer")
+    private List<Commande> commandes = new ArrayList<>();
 }

@@ -15,13 +15,11 @@ import java.util.List;
 @ToString
 
 public class Admin {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Integer id ;
-    private String nom;
-    private String tel;
-    private String email;
-    private String description;
-    private String password;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Integer id;
+    String username;
+    String Password;
     @OneToMany(mappedBy = "admin")
     private List<Customer> clients = new ArrayList<>();
 }

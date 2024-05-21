@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.com" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
       layout:decorate="template" lang="en">
 
 <head>
@@ -29,6 +30,7 @@
         /* CSS to change the design colors */
         body {
             background-image: url('https://static.vecteezy.com/system/resources/previews/002/534/933/non_2x/light-blue-gradient-blur-backdrop-vector.jpg');
+
 
             color: #000000; /* Text color - black */
         }
@@ -143,6 +145,10 @@
                 border-bottom: 2px solid #87ceeb; /* Light sky blue border bottom for cells */
                 border-right: 1px solid #87ceeb; /* Light sky blue border right for cells */
             }
+            .card img {
+                max-height: 200px; /* Hauteur maximale de l'image */
+                object-fit: cover; /* Redimensionner l'image pour couvrir toute la zone */
+            }
 
             th {
                 background-color: #87ceeb; /* Light sky blue background for table header */
@@ -185,6 +191,7 @@
         <div class="row">
             <div th:each="p: ${listProducts}" class="col-md-4">
                 <div class="card mb-4 shadow-sm">
+                    <img th:src="${p.imageUrl}" class="card-img-top" alt="Product Image">
                     <div class="card-body">
                         <h5 class="card-title">
                             <a th:href="@{details(id=${p.getId()})}" th:text="${p.getNom()}" class="product-name"></a>
@@ -196,7 +203,7 @@
                             <small class="text-muted" th:text="${p.getPrice()}+  MAD"></small>
                             <form th:action="@{/panier}" method="get">
 
-                                <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex justify-content-between align-items-center" sec:authorize="hasRole('USER')">
 
                                     <input type="number" name="quantity" min="1" value="1" class="form-control" style="width: 80px; display: inline-block;">
                                     <input type="hidden" name="id" th:value="${p.getId()}">
